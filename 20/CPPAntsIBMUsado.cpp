@@ -25,7 +25,7 @@ using namespace std;
 static double const numxx = 200.;
 static double const numyy = 200.;
 
-static int const NumberOfAnts = 3;
+static int const NumberOfAnts = 5;
 
 static int const LARGE_NUMBER = 100000;
 
@@ -106,7 +106,7 @@ static double const Evaporation = 0.005;        //0.001
 
 //  How much pheromone each ant deposits... not sure if I want this,
 //  or the member vector in the Ant class.
-static double const DropletAmount = 1.*.10*.00001;        //0.00001
+static double const DropletAmount = 1.*.1*.00001;        //0.00001
 
 string SensitivityMethod;
 
@@ -387,6 +387,11 @@ void PrintInfo(double delta_t, string COMM, Numerics data){
     tempfile << "#" << "\t" << COMM <<endl;
     tempfile << "# X points = "<< data.xx << endl;
     tempfile << "# Y points = "<< data.yy << endl;
+    tempfile << "Domain Info:" << endl;
+    tempfile << "Domain (Nondimensional)  = [" << x_1 << "," << x_2 << "] x [" << y_1 << "," << y_2 << "]" << endl;
+    tempfile << "Domain (Cm)  = [" << x_1_cm << "," << x_2_cm << "] cm x [" << y_1_cm << "," << y_2_cm << "] cm" << endl;
+    tempfile << "------------------------------------------------------" << endl;
+    tempfile << "Random is " << Turn_off_random << " times normal strength." << endl;
     tempfile << "------------------------------------------------------" << endl;
     tempfile << "Sensing Area Radius (cm)       " << SensingAreaRadius << endl;
     tempfile << "Sensing Area Radius (X_hat)    " << SENSING_AREA_RADIUS << endl;
@@ -461,6 +466,11 @@ int main (void){
     Pop = new Ant[NN];
 
     for (int antnumber=0; antnumber < totalantnumber; antnumber++) {
+        
+                //  Random initial velocities
+        Pop[antnumber].AntVelX = 0.1*cos(Normal(generator));
+        Pop[antnumber].AntVelY = 0.1*sin(Normal(generator));
+        
         Pop[antnumber].AntFilenamePos = "AntPos-"+to_string(antnumber+1)+".txt";
         Pop[antnumber].AntFilePos.open(Pop[antnumber].AntFilenamePos);
         cout << Pop[antnumber].AntFilenamePos << endl;
