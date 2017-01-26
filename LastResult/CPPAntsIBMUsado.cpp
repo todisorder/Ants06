@@ -25,11 +25,11 @@ using namespace std;
 static double const numxx = 200.;
 static double const numyy = 200.;
 
-static int const NumberOfAnts = 5;
+static int const NumberOfAnts = 20;
 
 static int const LARGE_NUMBER = 100000;
 
-static int const MaxActiveDroplets = 5000;
+static int const MaxActiveDroplets = 2000;
 
 static int const TestWithGivenTrail = 0;    // 1=true, 0=false
 
@@ -96,7 +96,7 @@ static double const Lambda = 1.;         //10./SENSING_AREA_RADIUS;????
 
 // tempo final
 //static double const TFINAL = 0.1;
-static double const delta_t = 0.05;   //     0.05
+static double const delta_t = 0.1;   //     0.05
 
 //  Pheromone Diffusion:
 static double const Diffusion = 0.0002;      // .005
